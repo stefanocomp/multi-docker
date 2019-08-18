@@ -3,21 +3,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t stefanocomp/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t stfrassetto/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true stefanocomp/react-test npm test
+  - docker run -e CI=true stfrassetto/react-test npm test
 
 after_success:
   # Build production images.
-  - docker build -t stefanocomp/multi-client ./client
-  - docker build -t stefanocomp/multi-nginx ./nginx
-  - docker build -t stefanocomp/multi-server ./server
-  - docker build -t stefanocomp/multi-worker ./worker
+  - docker build -t stfrassetto/multi-client ./client
+  - docker build -t stfrassetto/multi-nginx ./nginx
+  - docker build -t stfrassetto/multi-server ./server
+  - docker build -t stfrassetto/multi-worker ./worker
   # Log in to the docker CLI.
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to the docker HUB.
-  - docker push stefanocomp/multi-client
-  - docker push stefanocomp/multi-nginx
-  - docker push stefanocomp/multi-server
-  - docker push stefanocomp/multi-worker
+  - docker push stfrassetto/multi-client
+  - docker push stfrassetto/multi-nginx
+  - docker push stfrassetto/multi-server
+  - docker push stfrassetto/multi-worker

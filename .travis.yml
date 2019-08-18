@@ -15,7 +15,7 @@ after_success:
   - docker build -t stfrassetto/multi-server ./server
   - docker build -t stfrassetto/multi-worker ./worker
   # Log in to the docker CLI.
-  - docker login -u "$DOCKER_ID" -p "$DOCKER_PASSWORD"
+  - docker login -u $DOCKER_ID -p $DOCKER_PASSWORD
   # Take those images and push them to the docker HUB.
   - docker push stfrassetto/multi-client
   - docker push stfrassetto/multi-nginx
